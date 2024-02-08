@@ -43,19 +43,6 @@ services:
 
     command: start-dev
 
-  keycloak_caddy:
-      image: caddy:2.7.6-alpine
-      deploy:
-        resources:
-          limits:
-            cpus: "2"
-            memory: "2G"
-      ports:
-        - "127.0.0.1:9000:80"
-      container_name: keycloak_caddy
-      volumes:
-        - $PWD/Caddyfile:/etc/caddy/Caddyfile
-
   # The python api backend, depends on the keycloak service
   keycloak_backend:
     image: keycloak/backend
@@ -69,6 +56,8 @@ services:
       target: dev
     depends_on:
       - keycloak_keycloak
+    ports:
+      - "127.0.0.1:${BACKEND_EXTERNAL_TCP_PORT}:${BACKEND_INTERNAL_TCP_PORT}"
     volumes:
       - ./backend:/app
       - ./docker/data/backend_homedir:/root
@@ -87,6 +76,8 @@ services:
     build:
       context: frontend
       target: dev
+    ports:
+      - "127.0.0.1:${FRONTEND_EXTERNAL_TCP_PORT}:${FRONTEND_INTERNAL_TCP_PORT}"
     depends_on:
       - keycloak_backend
     volumes:

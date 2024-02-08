@@ -31,7 +31,7 @@ export default NuxtAuthHandler({
            clientId: process.env.KEYCLOAK_CLIENT_ID,
            clientSecret: process.env.KEYCLOAK_CLIENT_SECRET,
            issuer: process.env.KEYCLOAK_ISSUER,
-           callbackUrl: 'http://localhost:9000/api/auth/callback/keycloak',
+           //callbackUrl: 'http://localhost:9000/api/auth/callback/keycloak',
            authorization: { params: { scope: 'openid email roles' } }
         })
     ],

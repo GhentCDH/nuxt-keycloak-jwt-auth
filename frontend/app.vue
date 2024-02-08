@@ -9,7 +9,8 @@ const protectedResponse = ref('')
 const publicResponse = ref('')
 
 async function login() {
-  const signInOptions = {callbackUrl: "http://localhost:9000", redirect: true, external: true}
+  //const signInOptions = {callbackUrl: "http://localhost:9000", redirect: true, external: true}
+  const signInOptions = {redirect: true, external: false}
   
   await signIn('keycloak', signInOptions)
 }
