@@ -2,7 +2,7 @@
 
 import { NuxtAuthHandler } from '#auth'
 
-const config = useRuntimeConfig()
+//const config = useRuntimeConfig()
 
 // See for more info:
 // https://github.com/nextauthjs/next-auth/blob/v4/packages/next-auth/src/providers/keycloak.ts
@@ -31,7 +31,7 @@ export default NuxtAuthHandler({
            clientId: process.env.KEYCLOAK_CLIENT_ID,
            clientSecret: process.env.KEYCLOAK_CLIENT_SECRET,
            issuer: process.env.KEYCLOAK_ISSUER,
-
+           callbackUrl: 'http://localhost:9000/api/auth/callback/keycloak',
            authorization: { params: { scope: 'openid email roles' } }
         })
     ],

@@ -4,7 +4,7 @@ from litestar.connection import ASGIConnection
 from litestar.security.jwt import JWTAuth, Token
 import json
 
-from .auth import login_with_username_password
+from .auth import login_with_username_password, get_keycloak_public_key
 
 #https://docs.litestar.dev/2/reference/security/jwt.html#litestar.security.jwt.JWTAuthenticationMiddleware
 
@@ -65,9 +65,9 @@ async def retrieve_user_handler(token: "Token", connection: "ASGIConnection[Any,
 # app = Litestar([index,auth],middleware=[DefineMiddleware(JWTAuthMiddleware)])
 # app = Litestar([index,auth],middleware=[JWTAuthenticationMiddleware()])
 
-rsa_pub = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAua/OCq5mN0yZsnL0fiPHDB/dIxmGE7ME/HGy36R+KttOpb04+krV+rb2hZHFUAxtZnr/ViTcb0cgOjE6Xrpt4yPHIWZlJo871mlWxRcUvm2GcmsoVuC6tvEfdAnt0pOfQ886owf5PppYf7k/u+mZcnoW7BIwJGUkegOPOFfmXVhuVgp679kqz7Q06EWHpVpkpZgdFiPky7c+IatqPJbUNUrdlhOPmDHvA5Rkpeb6T764tXnIBq1pt4IXkcz5iTUwir8NkNmmFVPI4iEubFwUAh/rXhbGPGo0S4fqm4TaI61SvHZ9GV6NYzbmQ/2LY9WXkBdrtCt1Z7416FBU6FKRhQIDAQAB"
-rsa_pub = f"-----BEGIN PUBLIC KEY-----\n{rsa_pub}\n-----END PUBLIC KEY-----\n"
-secret = rsa_pub
+secret = get_keycloak_public_key()
+
+print(f"keycloak public key {secret}")
 
 jwt_auth = JWTAuth[User](
     retrieve_user_handler=retrieve_user_handler,

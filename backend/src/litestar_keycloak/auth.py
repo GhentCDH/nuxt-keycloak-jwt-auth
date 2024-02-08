@@ -3,23 +3,30 @@ from keycloak import KeycloakOpenID
 from decouple import config #alternative to dotenv
 
 def get_keycloak_openid():
-    server_url = config('KEYCLOAK_SERVER_URL') #"http://localhost:8080/auth/"
+    server_url = config('KEYCLOAK_ISSUER') #"http://localhost:8080/auth/"
     client_id = config('KEYCLOAK_CLIENT_ID')
     realm_name = config('KEYCLOAK_REALM')
     client_secret_key = config('KEYCLOAK_CLIENT_SECRET')
-
-    print("server_url ", server_url)
-    print("client_id ", client_id)
-    print("realm_name ", realm_name)
-    print("client_secret_key ", client_secret_key) 
+    
+    print("Keycloak server_url ", server_url)
+    print("Keycloak client_id ", client_id)
+    print("Keycloak realm_name ", realm_name)
+    print("Keycloak client_secret_key ", client_secret_key)
 
     return KeycloakOpenID(server_url=server_url,
                           client_id=client_id,
                           realm_name=realm_name,
                           client_secret_key=client_secret_key)
 
+def get_keycloak_public_key():
+    """
+    Retrieves the public key from the Keycloak OpenID provider.
 
-
+    Returns:
+        str: The public key in PEM format.
+    """
+    keycloak_openid = get_keycloak_openid()
+    return "-----BEGIN PUBLIC KEY-----\n" + keycloak_openid.public_key() + "\n-----END PUBLIC KEY-----\n"
 
 def login_with_username_password(username, password):
     """
@@ -36,16 +43,6 @@ def login_with_username_password(username, password):
 
     # Get Token
     token = keycloak_openid.token(username, password)
-
-    #verify token
-    KEYCLOAK_PUBLIC_KEY = "-----BEGIN PUBLIC KEY-----\n" + get_keycloak_openid().public_key() + "\n-----END PUBLIC KEY-----\n"
-    print("KEYCLOAK_PUBLIC_KEY ", get_keycloak_openid().public_key() )
-
-    # options = {"verify_signature": True, "verify_aud": False, "verify_exp": True}
-    # token_info = keycloak_openid.decode_token(token['access_token'], key=KEYCLOAK_PUBLIC_KEY, options=options)
-
-    # print("Token info ", token_info)
-
 
     return token
 

@@ -1,0 +1,16 @@
+{
+    #disable https
+    auto_https off
+}
+
+http:// {
+
+    reverse_proxy /litestar/* keycloak_backend:8000
+    
+    reverse_proxy /schema/* keycloak_backend:8000
+
+    reverse_proxy keycloak_frontend:3000
+}
+
+
+
