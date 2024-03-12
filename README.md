@@ -15,7 +15,6 @@ alternative? https://github.com/aborn/nuxt-openid-connect
 ## Docker compose
 
 
-
 pdm run  uvicorn src.litestar_keycloak.app:app --reload --port 0
 
 

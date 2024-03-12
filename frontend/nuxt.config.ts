@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     }
   },
   routeRules: {
-    '/schema/**': { proxy: 'http://localhost:7072/schema/**' },
-    '/litestar/**': { proxy: 'http://localhost:7072/litestar/**' }
+    '/schema/**': { proxy: 'http://keycloak_backend:8000/schema/**' },
+    '/litestar/**': { proxy: 'http://keycloak_backend:8000/litestar/**' }
   },
 })

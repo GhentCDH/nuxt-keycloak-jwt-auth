@@ -8,6 +8,8 @@ const protectedResponse = ref('')
 
 const publicResponse = ref('')
 
+const refreshTtoken = ref('')
+
 async function login() {
   //const signInOptions = {callbackUrl: "http://localhost:9000", redirect: true, external: true}
   const signInOptions = {redirect: true, external: false}
@@ -24,7 +26,7 @@ const headers = useRequestHeaders(['cookie']) as HeadersInit
 async function call_protected() {
   let accessToken = ""
   if(token.value) {
-    accessToken = token.value["accessToken"];
+    accessToken = token.value["accessToken"]; 
   }
 
   const headers = {'authorization': `Bearer ${accessToken}` }
@@ -98,7 +100,7 @@ button {
       <span>Status</span>
       <span>{{ status }}</span>
 
-      <span>JWT Token</span>
+      <span>Session data</span>
       <pre>{{ token || 'no token present, are you logged in?'  }}{{  }}</pre>
 
       <span>

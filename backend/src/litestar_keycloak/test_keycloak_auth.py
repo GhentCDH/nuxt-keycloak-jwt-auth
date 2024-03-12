@@ -47,7 +47,7 @@ print("access_token:", token["access_token"])
 
 access_token = token["access_token"]
 
-# retrieve token from http://keycloak_keycloak:8080/realms/myrealm
+# retrieve token from http://keycloakkeycloak:8080/realms/myrealm
 rsa_pub = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAua/OCq5mN0yZsnL0fiPHDB/dIxmGE7ME/HGy36R+KttOpb04+krV+rb2hZHFUAxtZnr/ViTcb0cgOjE6Xrpt4yPHIWZlJo871mlWxRcUvm2GcmsoVuC6tvEfdAnt0pOfQ886owf5PppYf7k/u+mZcnoW7BIwJGUkegOPOFfmXVhuVgp679kqz7Q06EWHpVpkpZgdFiPky7c+IatqPJbUNUrdlhOPmDHvA5Rkpeb6T764tXnIBq1pt4IXkcz5iTUwir8NkNmmFVPI4iEubFwUAh/rXhbGPGo0S4fqm4TaI61SvHZ9GV6NYzbmQ/2LY9WXkBdrtCt1Z7416FBU6FKRhQIDAQAB"
 rsa_pub = f"-----BEGIN PUBLIC KEY-----\n{rsa_pub}\n-----END PUBLIC KEY-----\n"
 secret = rsa_pub
