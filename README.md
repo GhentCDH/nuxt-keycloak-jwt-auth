@@ -1,6 +1,8 @@
 # Minimal keycloak authentication example with Nuxt 3 and Keycloak
 
-The idea here is to have a minimal working example of an authentication system in Nuxt 3 and a python backend using Keycloak. It consists of four services: a Nuxt 3 front-end, keycloak, keycloak postgres database, a Python backend. The front-end is a Nuxt 3 project, the backend is a python Litestar app.
+The idea here is to have a minimal working example of an authentication system in Nuxt 3 and a python backend using Keycloak. It consists of four services: a Nuxt 3 front-end, keycloak, keycloak postgres database, a Python backend. The front-end is a Nuxt 3 project, the backend is a python Litestar app. A call to the dummy backend API looks like this, before and after authentication:
+
+https://github.com/GhentCDH/nuxt-keycloak-jwt-auth/assets/60453/68997269-4494-4892-9aed-a47d72676ca2
 
 ## Why
 
