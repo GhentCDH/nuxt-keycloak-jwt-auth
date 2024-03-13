@@ -55,22 +55,17 @@ Uses a default PostgreSQL 16 docker image and the `.env` file provides a usernam
 
 ### Keycloak project setup
 
-Start the docker container with keycloak. The admin username and password are set via an environment variable.
-
-In development environment 
-
-After login, create a new @realm@. Name it myrealm
-
-https://www.keycloak.org/server/all-config
+Start the docker container with keycloak. The admin username and password are set via an environment variable. See the `.env` file to see the admin username and password and login on http://keycloakkeycloak:8080. After login, create a new @realm@. Name it `myrealm`.
 
 In the new realm, a new client needs to be created with a certain client id an client secret.
 
 * Name it `nuxt-auth`. Set the root URL to the Nuxt frontend url `http://localhost:3000/`, the home url to `http://localhost:3000/*` and the valid redirect URIs to `http://localhost:3000/*`
 * Copy the Client Secret in the Credentials page. It should look similar to `65UdvUDnVEDMU1iFSNjgxH2kX1xLJa0A`. This info should end up in the `frontend/.env` file. 
-* Add a user and choose a username and add a password in the credentials tab.
+* Add a (non admin) user and choose a username and add a password in the credentials tab.
 * Optionally add an external identity provider (such as GitHub).
-* Make sure that `Client authentication`is set to OFF
+* Make sure that `Client authentication` is set to OFF
 
+Now you should be able to login and access the protected backend API.
 
 ## Credits
 
